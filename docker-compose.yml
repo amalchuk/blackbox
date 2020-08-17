@@ -1,0 +1,32 @@
+version: "3.6"
+
+x-default: &default-settings
+  restart: always
+  sysctls:
+    net.core.somaxconn: 65535
+  ulimits:
+    nproc: 65535
+    nofile:
+      soft: 32767
+      hard: 65535
+
+services:
+  tor:
+    <<: *default-settings
+    build: ./tor
+    image: $CI_REGISTRY/$CI_PROJECT_PATH/tor:latest
+    ports:
+      - 1080:1080
+
+  privoxy:
+    <<: *default-settings
+    build: ./privoxy
+    image: $CI_REGISTRY/$CI_PROJECT_PATH/privoxy:latest
+    depends_on:
+      - tor
+    ports:
+      - 8000:8000
+
+networks:
+  default:
+    driver: bridge
