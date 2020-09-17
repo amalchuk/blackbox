@@ -12,5 +12,6 @@ USER tor
 WORKDIR /etc/tor
 COPY ["tor.cfg", "/etc/tor/torrc"]
 
+VOLUME ["/var/lib/tor"]
 EXPOSE 1080/tcp
 CMD ["tor", "-f", "/etc/tor/torrc"]

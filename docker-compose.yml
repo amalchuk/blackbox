@@ -15,6 +15,12 @@ services:
     <<: *default-settings
     build: ./tor
     image: $CI_REGISTRY/$CI_PROJECT_PATH/tor:latest
+    volumes:
+      - type: volume
+        source: datafiles
+        target: /var/lib/tor
+        volume:
+          nocopy: true
     ports:
       - 1080:1080
 
@@ -26,6 +32,13 @@ services:
       - tor
     ports:
       - 8000:8000
+
+volumes:
+  datafiles:
+    driver: local
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
 
 networks:
   default:
