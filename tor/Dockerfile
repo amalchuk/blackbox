@@ -7,7 +7,6 @@ FROM alpine:latest
 COPY --from=builder ["/go/bin/obfs4proxy", "/usr/local/bin/"]
 
 RUN ["apk", "add", "--quiet", "--no-cache", "tor"]
-USER tor
 
 WORKDIR /etc/tor
 COPY ["tor.cfg", "/etc/tor/torrc"]
