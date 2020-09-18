@@ -4,6 +4,20 @@ blackbox
 
 **Tor** and **Privoxy** bundle.
 
+Usage
+-----
+```shell
+# Pull images for the services:
+docker-compose pull
+
+# Restart the services:
+docker-compose up \
+    --detach \
+    --force-recreate \
+    --no-build \
+    --remove-orphans
+```
+
 Distribution
 ------------
 This project is licensed under the terms of the [MIT License](LICENSE).
