@@ -22,7 +22,7 @@ services:
         volume:
           nocopy: true
     ports:
-      - 1080:1080
+      - 9050:9050
 
   privoxy:
     <<: *default-settings
@@ -30,6 +30,14 @@ services:
     image: $CI_REGISTRY/$CI_PROJECT_PATH/privoxy:latest
     depends_on:
       - tor
+
+  squid:
+    <<: *default-settings
+    build: ./squid
+    image: $CI_REGISTRY/$CI_PROJECT_PATH/squid:latest
+    depends_on:
+      - tor
+      - privoxy
     ports:
       - 8000:8000
 
