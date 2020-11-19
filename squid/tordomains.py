@@ -14,7 +14,7 @@ def blacklisted_domains() -> List[str]:
     Download the list of domains currently forbidden in the Russian Federation.
     """
     connection = HTTPSConnection("reestr.rublacklist.net")
-    connection.request("GET", "/api/v2/domains/json")
+    connection.request("GET", "/api/v2/domains/json/")
     response_bytes = connection.getresponse().read()
 
     response = response_bytes.decode(DEFAULT_ENCODING)
