@@ -4,17 +4,22 @@ blackbox
 
 **Squid** &#8594; **Privoxy** &#8594; **Tor** bundle.
 
-Usage
------
+Development
+-----------
 ```shell
-# Pull images for the services:
-docker-compose pull
+# Create a virtual machine:
+docker-machine create \
+    --driver virtualbox \
+    --virtualbox-cpu-count 2 \
+    --virtualbox-disk-size 20480 \
+    --virtualbox-memory 2048 \
+    blackbox
 
-# Restart the services:
+# Build and restart the services:
 docker-compose up \
     --detach \
     --force-recreate \
-    --no-build \
+    --build \
     --remove-orphans
 ```
 

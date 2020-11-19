@@ -1,3 +1,4 @@
+---
 stages:
   - building
 
@@ -12,5 +13,4 @@ build images:
     - docker-compose push
   only:
     - master
-    - schedules
     - tags
